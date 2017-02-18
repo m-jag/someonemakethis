@@ -23,14 +23,14 @@ input
 }
 #inner-wrapper
 {
-  animation: autoscroll 10s linear infinite;
+  animation: autoscroll 20s linear infinite;
 }
 @keyframes autoscroll {
   from { 
     transform: translate3d(0,0,0);
   }
   to {
-    transform: translate3d(-204%,0,0);
+    transform: translate3d(-194%,0,0);
   }
 }
 
@@ -46,14 +46,6 @@ input
 	margin-right: 1em;
 }
 
-#newsfeed ul
-{
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	font-size: 50px;
-}
 
 #newsfeed ul li
 {
@@ -63,8 +55,6 @@ input
 	height: 100%;
 	margin: 0 1px 0 0;
 	padding: 0;
-	background: #333;
-	color: #ddd;
 	text-align: center;
 	cursor: pointer;
 }
