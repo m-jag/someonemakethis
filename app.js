@@ -1,6 +1,7 @@
-var app = require('http').createServer(handler)
+var app = require('http').createServer();
 var io = require('socket.io')(app);
 var fs = require('fs');
+
 
 app.listen(80);
 
@@ -44,7 +45,7 @@ MongoClient.connect("mongodb://localhost:27017/twitter", function(err, db)
 {
   if (err) {return console.dir(err);}
   var tweets = db.collection('tweets');
-  int numTweets = 0;
+  var numTweets = 0;
   var selectionArray = tweets.find().toArray(function(err, items){});
   while (numTweets < 6)
   {
