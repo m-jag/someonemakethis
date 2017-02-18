@@ -30,11 +30,9 @@ io.on('connection', function (socket)
   });
 });
 
-// Make change
-var socket = io.connect('http://localhost');
-socket.on('update-msg', function (msg) {
-    console.log(msg);
-    $('.idea').html(msg.data)
+io.on('connection', function(socket)
+{
+  console.log("Hello World");
 });
 
 //Retrieve
