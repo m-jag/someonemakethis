@@ -1,71 +1,69 @@
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Make This</title>
+        <meta charset="utf-8">
+        <title>Make This</title>
 </head>
 <style>
 html
 {
-	background-color: #5f98f4;
+    background-color: #5f98f4;
 }
 h1
 {
-	font-family: AR BLANCA, Sans-serif;
-	font-size: 72;
-	text-align: center;
+        font-family: AR BLANCA, Sans-serif;
+        font-size: 72;
+        text-align: center;
 }
 input
 {
-	font-family: AR BLANCA, Sans-serif;
-	font-size: 32;
-	background-color: #5590ed;
-	display: inline-block;
-	margin-top: 0.25em;
+        font-family: AR BLANCA, Sans-serif;
+        font-size: 32;
+        background-color: #5590ed;
+        display: inline-block;
+        margin-top: 0.25em;
 }
 #addIdeas
 {
-	text-align: center;
-	padding: 2em;
+        text-align: center;
+        padding: 2em;
 }
 #inner-wrapper
 {
   animation: autoscroll 20s linear infinite;
 }
 @keyframes autoscroll {
-  from { 
+  from {
     transform: translate3d(0,0,0);
   }
   to {
-    transform: translate3d(-194%,0,0);
+  transform: translate3d(-194%,0,0);
   }
 }
-
 #newsfeed
 {
-	height: 250px;
-	line-height: 250px;
-	text-align: center;
-	overflow-y: hidden;
-	overflow-x: hidden;
-	white-space: nowrap;
-	margin-left: 1em;
-	margin-right: 1em;
-	margin-top: 10em;
+        height: 250px;
+        line-height: 250px;
+        text-align: center;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        white-space: nowrap;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 10em;
 }
-
-
 #newsfeed ul li
 {
-	position: auto;
-	display: inline-block;
-	width: 33%;
-	height: 100%;
-	margin: 0 1px 0 0;
-	padding: 0;
-	text-align: center;
-	cursor: pointer;
+        position: auto;
+        display: inline-block;
+        width: 33%;
+        height: 100%;
+        margin: 0 1px 0 0;
+        padding: 0;
+        text-align: center;
+        cursor: pointer;
 }
 </style>
+
 <h1> 101 Ideas </h1>
 <div id = "newsfeed">
 	<div id = "inner-wrapper">
@@ -132,7 +130,6 @@ input
 		</ul>
 	</div>
 </div>
-
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
     t = window.twttr || {};
@@ -152,10 +149,19 @@ input
 </script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io('http://localhost');
-  socket.on('news', function (data) {
+  var socket = io('http://localhost/80');
+  socket.on('news', function (data)
+  {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
   });
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket = io('http://localhost');
+	socket.on('news', function (data){
+		console.log(data);
+		socket.emit('my other event', {my: 'data'});
+	});
 </script>
 </html>
