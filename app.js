@@ -1,17 +1,13 @@
-var app = require('http').createServer();
+var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
 
-
 app.listen(80);
 
-function handler (req, res)
-{
+function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
-  function (err, data)
-  {
-    if (err)
-    {
+  function (err, data) {
+    if (err) {
       res.writeHead(500);
       return res.end('Error loading index.html');
     }
@@ -21,18 +17,11 @@ function handler (req, res)
   });
 }
 
-io.on('connection', function (socket)
-{
+io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) 
-  {
+  socket.on('my other event', function (data) {
     console.log(data);
   });
-});
-
-io.on('connection', function(socket)
-{
-  console.log("Hello World");
 });
 
 //Retrieve
@@ -44,14 +33,16 @@ MongoClient.connect("mongodb://localhost:27017/twitter", function(err, db)
   if (err) {return console.dir(err);}
   var tweets = db.collection('tweets');
   var numTweets = 0;
-  var selectionArray = tweets.find().toArray(function(err, items){});
-  while (numTweets < 6)
+  var selectionArray = tweets.find();
+  while (selectionArray.hasNext() && numTweets < 6)
   {
     var spawn = require("child_process").spawn;
-    var process = spawn('python', ["parse.py", selectionArray[numTweets]]);
-    process.stdout.on('data', function(data){
+    var process = spawn('python', ["parseTweets.py", selectionArray.next()]);
+    process.stdout.on('data', function(data)
+    {
       io.sockets.emit('update-msg', { tweetData: data});
     })
     // Call for change
+    numTweets++;
   }
 });
